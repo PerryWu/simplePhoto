@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Photos</h1>
-    <p>Express stock photo application.</p>
-    <div id="photos">
-      <% photos.forEach(function(photo) { %>
-        <div class="photo">
-          <h2><%=photo.name%></h2>
-          <a href='/photo/<%=photo.id%>/download'>
-            <img src='/photos/<%=photo.path%>'/>
-          </a>
-        </div>
-      <% }) %>
-    </div>
-  </body>
+	<head>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$("#uploadPhoto").click(function(){
+					document.location = "/upload";
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<h1>Simple Photos</h1>
+		<p>Simple photo application.</p>
+		<button type="button" id="uploadPhoto">Upload</button>
+		<div id="photos">
+			<% photos.forEach(function(photo) { %>
+			<div class="photo">
+				<h2><%=photo.name%></h2>
+				<a href='/photo/<%=photo.id%>/download'>
+					<img src='/photos/<%=photo.path%>'/>
+				</a>
+			</div>
+			<% }) %>
+		</div>
+	</body>
 </html>

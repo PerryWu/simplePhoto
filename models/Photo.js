@@ -52,7 +52,11 @@ exports.find = function(obj, fn) {
 	var idList = [];
 	var rst = [];
 	client.smembers("pillaList", function(err, objs) {
+		if(err) return fn(err, null);
 		console.log("find:" + objs);
+		if(objs.length == 0)
+			return fn(null, rst);
+
 		for(var i in objs) {
 			var index = objs[i];
 			exports.findById(index, function(err, obj) {
